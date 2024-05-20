@@ -12,6 +12,7 @@ const Markdown = ({ text }: Props) => {
   const htmlcontent = md().render(safeText);
 
   const sanitized = DOMPurify.sanitize(htmlcontent);
+  console.log('mar' + sanitized);
 
   return <div dangerouslySetInnerHTML={{ __html: sanitized }}></div>;
 };

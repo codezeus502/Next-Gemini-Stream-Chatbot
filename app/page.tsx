@@ -64,17 +64,19 @@ export default function Home() {
               m.role === 'user' ? 'bg-stone-300' : ''
             }`}
           >
-            <Markdown text={m.content} />
+            {m.content}
+            {/* <Markdown text={m.content} /> */}
             {m.role === 'user' ? (
               <User2 className="absolute top-2 -left-10 border rounded-full p-1 shadow-lg stroke-[#010109]" />
             ) : (
-              <Bot
-                className={`absolute top-2 -left-10 border rounded-full p-1 shadow-lg stroke-[#0842A0] ${
-                  isLoading && index === messages.length - 1
-                    ? 'animate-bounce'
-                    : ''
-                }`}
-              />
+              <Bot className="absolute top-2 -left-10 border rounded-full p-1 shadow-lg stroke-[#0842A0]" />
+              // <Bot
+              //   className={`absolute top-2 -left-10 border rounded-full p-1 shadow-lg stroke-[#0842A0] ${
+              //     isLoading && index === messages.length - 1
+              //       ? 'animate-bounce'
+              //       : ''
+              //   }`}
+              // />
             )}
           </div>
         ))}

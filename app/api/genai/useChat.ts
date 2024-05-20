@@ -37,7 +37,6 @@ export function useChat(apiEndpoint: string) {
     } finally {
       setIsLoading(false);
     }
-
     setInput('');
   };
 
