@@ -2,9 +2,9 @@ import React from 'react';
 import DOMPurify from 'dompurify';
 import md from 'markdown-it';
 
-interface Props {
+type Props = {
   text: string;
-}
+};
 
 const Markdown = ({ text }: Props) => {
   const safeText = typeof text === 'string' ? text : '';
