@@ -2,20 +2,13 @@
 import { Bot, Loader2, Send, User2 } from 'lucide-react';
 import { useChat } from './api/genai/useChat'; // Update the path accordingly
 import Markdown from './component/markdown';
+import SanitizedComponent from './component/markdown';
 
-export default function Home() {
+const Home: React.FC = () => {
   const { messages, input, handleInputChange, handleSubmit, isLoading, stop } =
     useChat('/api/genai');
 
-  return (
-    <main className="flex min-h-screen flex-col items-center p-12">
-      {RenderForm()}
-      {RenderMessages()}
-      {/* {JSON.stringify(messages)} */}
-    </main>
-  );
-
-  function RenderForm() {
+  const RenderForm = () => {
     return (
       <form
         onSubmit={(event) => {
@@ -49,9 +42,9 @@ export default function Home() {
         </button>
       </form>
     );
-  }
+  };
 
-  function RenderMessages() {
+  const RenderMessages = () => {
     return (
       <div
         id="chatbot"
@@ -64,7 +57,7 @@ export default function Home() {
               m.role === 'user' ? 'bg-stone-300' : ''
             }`}
           >
-            {m.content}
+            <SanitizedComponent html={m.content} />
             {/* <Markdown text={m.content} /> */}
             {m.role === 'user' ? (
               <User2 className="absolute top-2 -left-10 border rounded-full p-1 shadow-lg stroke-[#010109]" />
@@ -82,5 +75,15 @@ export default function Home() {
         ))}
       </div>
     );
-  }
-}
+  };
+
+  return (
+    <main className="flex min-h-screen flex-col items-center p-12">
+      {RenderForm()}
+      {RenderMessages()}
+      {/* {JSON.stringify(messages)} */}
+    </main>
+  );
+};
+
+export default Home;
