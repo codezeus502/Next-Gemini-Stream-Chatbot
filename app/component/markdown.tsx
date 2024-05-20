@@ -1,16 +1,22 @@
 import React from 'react';
 import DOMPurify from 'dompurify';
+// import md from 'markdown-it';
+import markdownIt from 'markdown-it';
 
-interface SanitizedComponentProps {
-  html: string;
-}
-
-const SanitizedComponent: React.FC<SanitizedComponentProps> = ({ html }) => {
-  const cleanHtml = DOMPurify.sanitize(html, {
-    ADD_ATTR: ['data-darkreader-inline-stroke', 'style'],
-  });
-
-  return <div dangerouslySetInnerHTML={{ __html: cleanHtml }}></div>;
+type Props = {
+  text: string;
 };
 
-export default SanitizedComponent;
+const md = markdownIt({});
+
+const Markdown = ({ text }: Props) => {
+  console.log('first' + text);
+  const safeText = typeof text === 'string' ? text : '';
+  const htmlcontent = md.render(safeText);
+  const sanitized = DOMPurify.sanitize(htmlcontent);
+  console.log('mar' + sanitized);
+
+  return <div dangerouslySetInnerHTML={{ __html: sanitized }}></div>;
+};
+
+export default Markdown;

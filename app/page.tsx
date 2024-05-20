@@ -2,7 +2,6 @@
 import { Bot, Loader2, Send, User2 } from 'lucide-react';
 import { useChat } from './api/genai/useChat'; // Update the path accordingly
 import Markdown from './component/markdown';
-import SanitizedComponent from './component/markdown';
 
 const Home: React.FC = () => {
   const { messages, input, handleInputChange, handleSubmit, isLoading, stop } =
@@ -57,8 +56,7 @@ const Home: React.FC = () => {
               m.role === 'user' ? 'bg-stone-300' : ''
             }`}
           >
-            <SanitizedComponent html={m.content} />
-            {/* <Markdown text={m.content} /> */}
+            <Markdown text={m.content} />
             {m.role === 'user' ? (
               <User2 className="absolute top-2 -left-10 border rounded-full p-1 shadow-lg stroke-[#010109]" />
             ) : (
