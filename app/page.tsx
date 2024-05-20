@@ -57,6 +57,7 @@ const Home: React.FC = () => {
             }`}
           >
             {/* <Markdown text={m.content} /> */}
+            {console.log(m.content)}
             {m.content}
             {m.role === 'user' ? (
               <User2 className="absolute top-2 -left-10 border rounded-full p-1 shadow-lg stroke-[#010109]" />

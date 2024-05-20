@@ -32,6 +32,7 @@ export function useChat(apiEndpoint: string) {
       const responseData = await response.json();
       const botMessage = { role: 'bot', content: responseData.content };
       setMessages([...messages, newMessage, botMessage]);
+      console.log(messages);
     } catch (error) {
       console.error('Error:', error);
     } finally {
